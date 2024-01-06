@@ -1,27 +1,3 @@
-import React from "react";
-import ReactDOM  from "react-dom/client";
-
-/**
- * Haeder
- *  -   Logo
- *  -   Nav Item
- * Body
- *  -   Search
- *  -   Restaurant Container
- *  -   RestaurantCard
- *  -   
- * 
- * Footer
- *  -   Copyright
- *  -   Address
- *  -   Links
- *  -   Contact
- * 
- */
-
-const imgSrc = "https://cdn.dribbble.com/users/4438388/screenshots/15057332/food_app_icon-01_4x.jpg";
-const resLogo = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
-
 const restCardsList = [
     {
       "info": {
@@ -38,6 +14,7 @@ const restCardsList = [
           "Desserts",
           "Continental"
         ],
+        "avgRating": 3.6,
         "parentId": "275062",
         "avgRatingString": "NEW",
         "promoted": true,
@@ -2339,85 +2316,6 @@ const restCardsList = [
         "type": "DEEPLINK"
       }
     }
-  ]
+  ];
 
-
-
-
-const Header =()=>{
-    return (
-        <div className="header">
-            <div className="logo-container">
-                <img className="logo" src={imgSrc} />
-            </div>
-            <div className="nav-items">
-                <ul>
-                <li>Home</li>
-                <li>Offers</li>
-                <li>Account</li>
-                <li>Cart</li>
-                </ul>
-            </div>
-        </div>
-    )
-};
-
-const RestaurantCard =( props) =>{
-    const {resData} = props;
-    const {cloudinaryImageId, name, cuisines, avgRating, areaName} = resData?.info;
-        {/*
-        this is called optional chaining. And here we optimizing our code here. 
-        Instead of mapping values like this
-        resData?.info.areaName.
-        We are using optional chaining and write like this 
-        const {cloudinaryImageId, name, cuisines, avgRating, areaName} = resData?.info; 
-        to reduce the messed code and minimize the repetition of code as well.
-        Now we can directly use the values with just name below.
-        */}
-    return (
-        <div className="res-card" style={{backgroundColor:"#f0f0f0"}}>
-            <img  className="res-logo" alt="res-logo" src={resLogo.concat(cloudinaryImageId)} />
-            <h3>{name}</h3>
-            <h4>{cuisines.join(", ")}</h4>  {/* .join is used for array integration with comma*/}
-            <h4>⭐️ {avgRating} * {resData?.info.sla.deliveryTime} mins</h4>
-            <h4>{areaName}</h4>
-        </div>
-    );
-};
-
-// not using keys (not acceptable) <<< usning index as key <<< unique id as key (best practice)
-
-const Body = () =>{
-    return (
-        <div className="body">
-            <div className="search">Search</div>
-            <div className="res-container">
-                {/* <RestaurantCard resData = {restCardsList[0]}/>  {/* passing props to the component */}
-                {/* <RestaurantCard resData = {restCardsList[1]}/> 
-                <RestaurantCard resData = {restCardsList[2]}/> 
-                <RestaurantCard resData = {restCardsList[3]}/>  */} 
-
-                {/*This is not a good practice to create component one by one and map the restraurants with its index value.
-                  *  Instead we wil create components based on list count and map dynamically by using list.map(component) javascript function below.
-                  Always provide a key when looping through a lit.
-                */}
-
-                {restCardsList.map(restaurant=>(<RestaurantCard key={restaurant.info.id} resData={restaurant}/>))};   {/**This is a config driven UI as the card is now dependent on data. */}
-            </div>
-        </div>
-    )
-};
-
-
-const AppLayout =()=>{
-    return (
-        <div className="app">
-            <Header />
-            <Body />
-        </div>
-    )
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
-
+  export default restCardsList;

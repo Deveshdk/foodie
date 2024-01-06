@@ -1,0 +1,78 @@
+
+    -   resData?.info.areaName.
+    -   We are using optional chaining and write like this 
+        const {cloudinaryImageId, name, cuisines, avgRating, areaName} = resData?.info; 
+        to reduce the messed code and minimize the repetition of code as well.
+        Now we can directly use the values with just name below.
+        
+
+
+    <RestaurantCard resData = {restCardsList[0]}/>  {/* passing props to the component */}
+    <RestaurantCard resData = {restCardsList[1]}/> 
+    <RestaurantCard resData = {restCardsList[2]}/> 
+    <RestaurantCard resData = {restCardsList[3]}/> 
+    This is not a good practice to create component one by one and map the restraurants with its index value.
+    Instead we wil create components based on list count and map dynamically by using list.map(component) javascript function below.
+    Always provide a key when looping through a lit.
+
+    not using keys (not acceptable) <<< usning index as key <<< unique id as key (best practice)
+
+
+
+    We can't use multiple default exports, instead we use named exports.
+    eg. export const CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
+
+    But we import named exports  with curly brackets{}.
+    eg. import { CDN_URL } from "../utils/constants";
+
+
+React Hooks:
+
+    useState():
+        -   In order to use useState(), we have to import it from react first as named imoort inside curly brackets. 
+        -   eg. import { useState } from "react";
+        -   It is a super powerful state variable.
+        -   It takes some default value.
+        -   eg. const [topRatedRestaurantList,setTopRatedRestaurantList] = useState(restCardsList);     
+            here restCardsList is a default value for topRatedRestaurantList.
+        -   It takes an additional set function for the state manipulation. eg. setTopRatedRestaurantList
+        -   how to set the listValue.
+            eg. 
+                <button className="filter-btn" onClick={()=>{
+                    const filteredList=restCardsList.filter(res => res.info.avgRating>4);
+                    setTopRatedRestaurantList(filteredList);
+                }}>4+ Rated Restaurants</button>
+        -   Whenever a state variable updates, react re-renders the component.
+
+
+Reconciliation Algorithm (React Fiber) : 
+    -   Whenever something changes in the UI or in state variable, it is called reconciliation.
+    -   It is the new way of finding the diff and updating the DOM.
+
+
+Virtual Dom : 
+    -   Virtual DOM is a representation of an Actual DOM or / a javascript object or / nested div tags.
+        eg. <Body /> component => 
+        <div className="body">
+            <div className="filter">
+                <button className="filter-btn" onClick={()=>{
+                    const filteredList=restCardsList.filter(res => res.info.avgRating>4);
+                    setTopRatedRestaurantList(filteredList);
+                }}>4+ Rated Restaurants</button>
+            </div>
+            <div className="search">Search</div>
+            <div className="res-container">
+                {topRatedRestaurantList.map(restaurant=>(<RestaurantCard key={restaurant.info.id} resData={restaurant}/>))};   {/**This is a config driven UI as the card is now dependent on data. */}
+            </div>
+        </div>
+            
+
+Diff Algorithm :
+    -   It finds the difference between two virtual DOM and then updates the actual DOM. i.e. react becomes faster.
+    -   Virtual DOM is nothing but a javascript object.
+        eg. Earlier there were 21 restaurants in our Virtual DOM, after filter 15 restaurants in Virtual DOM.
+            So, diff algorith will find the difference between both the Virtual DOM/ object and then update the actual DOM.
+
+
+
+    
