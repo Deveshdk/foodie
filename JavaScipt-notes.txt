@@ -1,0 +1,45 @@
+//  Comparators $ Equality
+
+//  == only checks if the value is equal but === checks the value and the data type.
+//   ===  equal to
+//   !== not equal to
+//   > greater than
+//   < less than
+//  >= greater than or equal to
+//  <= less than or equal to
+//  && AND
+//  || OR 
+
+
+// Arrays
+
+// push method push at the last item
+// pop method pops from the last item
+
+// As a best practice we should write script at the end in body section, in order to avoid error.
+//Because if any function is not declared then it will give error and page will jot load.
+
+
+// document.querselector can be used to select any of the specific html tags, class & id.
+
+Map filter reduce:
+
+Infinite curing:
+
+Closure :
+
+This keyword : 
+
+Set interval :
+
+Set timeout :
+
+Debounce :
+
+Throttling :
+
+Event loop :
+
+Arrow fn vs regular fn :
+
+Optional chaining :
