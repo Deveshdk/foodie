@@ -45,6 +45,14 @@ React Hooks:
         -   Whenever a state variable updates, react re-renders the component.
 
 
+    useEffect():
+        -   useEffect is a normal JS function.
+        -   It is called after the component has been rendered.
+        -   It is very useful for better UX.
+        -   It can be imported in the same way as useState like named import from react. eg. import {useEffect} from "react";
+        -   eg. 
+
+
 Reconciliation Algorithm (React Fiber) : 
     -   Whenever something changes in the UI or in state variable, it is called reconciliation.
     -   It is the new way of finding the diff and updating the DOM.
@@ -72,6 +80,56 @@ Diff Algorithm :
     -   Virtual DOM is nothing but a javascript object.
         eg. Earlier there were 21 restaurants in our Virtual DOM, after filter 15 restaurants in Virtual DOM.
             So, diff algorith will find the difference between both the Virtual DOM/ object and then update the actual DOM.
+
+
+Monolith Architecture vs Microservice Architecture:
+    
+    Microservice Architecture :
+        Decomposed Services:
+            Applications are divided into smaller services, each responsible for a specific business capability or function.
+            These services are independently deployable and scalable.
+        Independent Deployability:
+            Each service can be developed, deployed, updated, and scaled independently without affecting the entire application.
+        Service Boundaries:
+            Services have well-defined boundaries and communicate with each other through APIs, often using lightweight protocols like REST, gRPC, or messaging systems.
+        Technology Diversity:
+            Different services within a microservices architecture can use different technologies, languages, databases, or frameworks, depending on their specific requirements.
+        Resilience and Fault Isolation:
+            Services are designed for resilience, and failures in one service don't necessarily impact the entire system.
+            Isolating failures helps in maintaining overall system stability.
+        Scalability:
+            Microservices can be independently scaled based on the specific needs of each service, allowing efficient resource allocation.
+        Continuous Deployment:
+            The architecture supports continuous integration and continuous deployment (CI/CD), enabling rapid and frequent updates to individual services.
+        Ease of Maintenance:
+            Smaller, more focused services are typically easier to understand, maintain, and modify compared to monolithic applications.
+
+    Monolith Architecture :
+        Single Unit:
+            The entire application, including its components (frontend, backend, database), is tightly integrated into a single codebase and deployed as a single unit.
+        Tightly Coupled:
+            Components within the application are closely interconnected, often sharing the same codebase, libraries, and resources.
+        Technology Stack:
+            A monolithic application generally uses a single technology stack, including a specific programming language, framework, and database system.
+        Scalability:
+            Scaling a monolithic application involves scaling the entire application rather than scaling specific components independently.
+        Development and Deployment:
+            Development, testing, and deployment are often centralized and managed as a single application lifecycle.
+
+
+Two ways to render your UI?
+    1st Approach :
+        -   Page Load => Make an Api Call => Render the UI
+    
+    2nd Appoach :
+        -   Page Loads => Render the UI => Make an API call => Re-render UI with data
+        -   This appoach gives better UX and it is the best practice.
+
+
+    
+    
+
+
 
 
 

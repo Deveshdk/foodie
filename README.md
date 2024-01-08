@@ -32,3 +32,5 @@
 # Virtual Dom
 
 # Diff Algorithm
+
+# Monolith Architecture vs Microservices Architecture

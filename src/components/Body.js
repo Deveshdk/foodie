@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import restCardsList from "../utils/mockData";
 import { useState } from "react";
+import {useEffect} from "react";
 
 const Body = () =>{
     // this is a normal JS variable which can be updated like topRatedrestaurant= ["ABC"];
@@ -12,7 +13,23 @@ const Body = () =>{
 
 
     // state variable
-    const [topRatedRestaurantList,setTopRatedRestaurantList] = useState(restCardsList);
+    const [topRatedRestaurantList,setTopRatedRestaurantList] = useState([]);
+
+    useEffect(() => {
+        fetchData();
+    },[]);
+
+    const fetchData = async () => {
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.495531649422116&lng=77.17867344617845&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const json = await data.json();
+        console.log(json);
+        setTopRatedRestaurantList(json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants);
+    };
+
+    // fetch is a method provided by browser not javascript. But it returns a promise.
+    // One way to handle the promise is by using async and await.
+
+
     return (
         <div className="body">
             <div className="filter">
