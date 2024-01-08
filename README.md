@@ -21,10 +21,36 @@
     - Because it does efficient Virtual DOM manipulation.
     - It keeps the UI layer and data layer in sync.
 
+# Optional Chaining
+
 # React Hooks
     (Normal JS utility function)
     - useState() 
     - useEffect()
+    - useContext()
+    - useReducer()
+    - useCallback()
+    - useMemo()
+    - useRef()
+    - useImperativeHandle()
+    - useLayoutEffect()
+    - useDebugValue()
+
+# Custom Hooks
+
+# Redux
+
+# Promises
+
+# Lazy Loading
+
+# Client Side Rendering & Server Side Rendering
+
+# React Router
+
+# React Tests
+
+# Async Task
 
 # Reconciliation Algorithm (React Fiber)
     (Introduced in React 16)

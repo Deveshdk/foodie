@@ -1,5 +1,13 @@
 
-    -   resData?.info.areaName.
+Optional Chaining :
+    -   ?.: This is the optional chaining operator. 
+        It checks if the property preceding it (address, contact) exists and is not null or undefined
+        before attempting to access the subsequent property (street, email).
+    -   If the property or method before the ?. is null or undefined, the expression will short-circuit 
+        and return undefined immediately without throwing an error. 
+    -   This helps prevent the "Cannot read property 'x' of undefined" error.
+    
+    -   eg. resData?.info.areaName.
     -   We are using optional chaining and write like this 
         const {cloudinaryImageId, name, cuisines, avgRating, areaName} = resData?.info; 
         to reduce the messed code and minimize the repetition of code as well.
@@ -14,6 +22,7 @@
     This is not a good practice to create component one by one and map the restraurants with its index value.
     Instead we wil create components based on list count and map dynamically by using list.map(component) javascript function below.
     Always provide a key when looping through a lit.
+    -   eg. {topRatedRestaurantList.map(restaurant=>(<RestaurantCard key={restaurant.info.id} resData={restaurant}/>))}; 
 
     not using keys (not acceptable) <<< usning index as key <<< unique id as key (best practice)
 
@@ -28,12 +37,18 @@
 
 React Hooks:
 
+    React Hooks are functions that allow functional components in React to use state, lifecycle methods, context,
+    and other React features without writing a class.
+    They were introduced in React version 16.8 to address various challenges
+    and provide a cleaner way to manage stateful logic in functional components.
+
     useState():
+        -   Used for state manangement, manages component level states.
         -   In order to use useState(), we have to import it from react first as named imoort inside curly brackets. 
         -   eg. import { useState } from "react";
         -   It is a super powerful state variable.
         -   It takes some default value.
-        -   eg. const [topRatedRestaurantList,setTopRatedRestaurantList] = useState(restCardsList);     
+        -   eg. const [topRatedRestaurantList,setTopRatedRestaurantList] = useState([restCardsList]);     
             here restCardsList is a default value for topRatedRestaurantList.
         -   It takes an additional set function for the state manipulation. eg. setTopRatedRestaurantList
         -   how to set the listValue.
@@ -46,11 +61,44 @@ React Hooks:
 
 
     useEffect():
+        -   manages the lifecycle of the component. replaces componentDidMount,componenDidUpdate,componentWillMount.
         -   useEffect is a normal JS function.
         -   It is called after the component has been rendered.
         -   It is very useful for better UX.
         -   It can be imported in the same way as useState like named import from react. eg. import {useEffect} from "react";
-        -   eg. 
+        -   eg.     useEffect(() => {
+                    fetchData();
+                    },[]);
+
+    
+    useContext(): 
+        -   Allows functional components to consume data from React Context API.
+            It provides access to the value of the nearest Context provider.
+
+    useReducer(): 
+        -   Alternative to useState for managing more complex state logic.
+            It uses a reducer function and returns the current state and a dispatch function.
+
+    useCallback():
+        -   Memoizes functions to prevent unnecessary re-renders of components that rely on these functions.
+
+    useMemo():
+        -   Memoizes the result of a function to improve performance by caching expensive computations.
+
+    useRef():
+        -   Returns a mutable ref object that persists across renders and can hold a reference to a DOM element or any mutable value.
+
+    useImperativeHandle():
+        -   Customizes the instance value that is exposed when using ref with forwardRef.
+
+    useLayoutEffect():
+        -   Similar to useEffect, but it runs synchronously after all DOM mutations.
+            It's often used for code that needs to run after the DOM is updated.
+
+    useDebugValue():
+        -   Helps display a label for custom hooks in React DevTools.
+
+Custom Hooks :
 
 
 Reconciliation Algorithm (React Fiber) : 
