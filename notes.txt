@@ -1,3 +1,10 @@
+Why don't we use normal JS variable instead of state variable?
+    -   In state variable, whenever the state of any variable is changed, react re-renders the whole component with the updated value(
+        which is found by diff algorithm/also know as reconciliation) and only updates the modified value.
+    -   But in normal JS variable, even if the value of the variabe is changed, it will not render in the UI as react does not know 
+        if there is any change. eg. Login button
+    
+
 
 Optional Chaining :
     -   ?.: This is the optional chaining operator. 
@@ -172,6 +179,12 @@ Two ways to render your UI?
     2nd Appoach :
         -   Page Loads => Render the UI => Make an API call => Re-render UI with data
         -   This appoach gives better UX and it is the best practice.
+
+
+Shimmer UI :
+    -   It is kind of using dummy/blank/fake UI untill the data has been loaded.
+    -   It gives better UX.
+    -   Instead of using Loading icon , we can use Shimmer UI to show untill the data is rendered.
 
 
     
