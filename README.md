@@ -35,6 +35,7 @@
     - useImperativeHandle()
     - useLayoutEffect()
     - useDebugValue()
+    - useRouteError()
 
 # Custom Hooks
 
@@ -62,3 +63,5 @@
 # Monolith Architecture vs Microservices Architecture
 
 # Shimmer UI
+
+# Routing

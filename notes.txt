@@ -65,6 +65,11 @@ React Hooks:
                     setTopRatedRestaurantList(filteredList);
                 }}>4+ Rated Restaurants</button>
         -   Whenever a state variable updates, react re-renders the component.
+        -    state variable is meant ot be created inside a functional component at the higher level.
+            eg. never create a state variable outside of the functional component.
+                never create a state variable inside a conditional statement. i.e. if else.
+                never create a state variable inside a loop.
+                never create a state variable inside a function even though it will not give error. It's not a good practice.
 
 
     useEffect():
@@ -76,7 +81,10 @@ React Hooks:
         -   eg.     useEffect(() => {
                     fetchData();
                     },[]);
-
+        -   dependency array is not necessary in useEffect.
+        -   case 1: if no dependency array, useEffect will be called on every component render.
+        -   case 2: if empty dependency array, useEffect will one be called once i.e initially on the page load.
+        -   case 3: if dependency array is not empty, useEffect will be called every time there is a change in the dependency array state.
     
     useContext(): 
         -   Allows functional components to consume data from React Context API.
@@ -104,6 +112,19 @@ React Hooks:
 
     useDebugValue():
         -   Helps display a label for custom hooks in React DevTools.
+    
+    useRouteError():
+        -   It can be imported as named import from react-router-dom. eg. import {useRouteErro} from "react-router-dom";
+        -   It is developer friendly and can be used to show error in the UI.
+            eg. const Error = () =>{
+                const err = useRouteError();
+                return (
+                <div className="error">
+                <h1>{err.status} {err.statusText}</h1>
+                <h2>{err.data}</h2>
+                </div>
+                );
+            }   
 
 Custom Hooks :
 
@@ -185,6 +206,95 @@ Shimmer UI :
     -   It is kind of using dummy/blank/fake UI untill the data has been loaded.
     -   It gives better UX.
     -   Instead of using Loading icon , we can use Shimmer UI to show untill the data is rendered.
+
+
+Routing :
+    -   We can install react router dom to handle our routing in react.
+        eg. npm install react-router-dom   , it will add the react-router-dom in package.json
+    -   createBrowserRouter is used to add all the routes path and it takes a list of array as routes.
+    -   it is provided by react-router-dom and can be used by importing it.
+        eg. import {createBrowserRouter} from "react-router-dom";
+    -   How to define the path inside createBrowserRouter:
+            -   eg.
+                const router= createBrowserRouter([
+                    {
+                        path:"/",
+                        element:<AppLayout />,
+                        errorElement:<Error />
+                    },
+                    {
+                        path:"/about",
+                        element:<About />
+                    },
+                    {
+                        path:"/contact",
+                        element:<Contact />,
+                    }
+                ]);
+
+    -   path is used to provide the route url.
+    -   element is used to render the component on that path.
+    -   errorElement is used to render the error component if any path is wrong.
+    
+    -   how to render this routes:
+            -   ReactProvider is used to render this routes in our root.
+            -   it can be imported by react-router-dom along with createBrowserRouter.
+                eg. import {createBrowserRouter,RouterProvider} from "react-router-dom";
+            -   Used as. root.render(<RouterProvider router={routes} />); instead of root.render(<ApplAyout />);
+
+
+    -   Children Routes:
+        -   The main concept of children out is to keep our header and footer intact and render the body based on the routes.
+        -   Children routes can be created with children element inside createBrowserRouter.
+                eg. children:[
+                {
+                    path:"/",
+                    element:<Body />
+                },
+                {
+                    path:"/about",
+                    element:<About />
+                },
+                {
+                    path:"/contact",
+                    element:<Contact />,
+                }
+            ],
+
+        -   Now we can Outlet component to render body of any routes.
+        -   import {<Outlet />} from "react-router-dom";
+            eg.     const AppLayout =()=>{
+                    return (
+                        <div className="app">
+                        <Header />
+                        <Outlet />
+                    </div>
+                    )
+                    };
+
+    
+    -   Never use an anchor tag for routing any another component. As it will reload the whole page.
+        Instead use link component which can be imported from react-router-dom. It only refreshes the component.
+        Epitome of single page application.
+        eg. import {Link} from "react-router-dom";
+            <li><Link to="/contact">Contact Us</Link></li>
+
+    -   Client Side Routing :
+        -   This is client side routing.
+        -   All the components have been loaded at the first time.
+        -   In order to route to different pages, like about us, we are not making any network calls. We are only loading the components.
+
+    -   Server Side Routing :
+        -   When we make a call to the server and then we fetch that page and we show it in the UI.
+        -   eg. if we have multiple html pages and we make a call to that routes to load that page.
+
+
+
+    Dynamic Routing :
+    -   where you pass the routes with some id or other parameter i.e. not fixed.
+    -   eg. path: /restaurants/:resId   , 
+    -   we use colon(:) to pass dynamic data to our routes. eg. resId is dynamic.
+
 
 
     

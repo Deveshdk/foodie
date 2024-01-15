@@ -87,3 +87,11 @@
 .filter {
     display: flex;
 }
+
+.menu-container {
+    justify-content: center;
+}
+
+.menu-container > ul > li {
+    list-style-type: none;
+}
