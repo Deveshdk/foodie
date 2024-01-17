@@ -261,7 +261,7 @@ Routing :
                 }
             ],
 
-        -   Now we can Outlet component to render body of any routes.
+        -   Now we can use Outlet component to render body of any routes.
         -   import {<Outlet />} from "react-router-dom";
             eg.     const AppLayout =()=>{
                     return (
