@@ -1,28 +1,15 @@
-import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import ItemCard from "./ItemCard";
 import { useParams } from "react-router-dom";
 import Rating from "./Rating";
 import Coupons from "./Coupons";
-import { MENU_API } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const Menu = () =>{
-    const [resInfo, setResInfo] = useState(null);
-    const [menuCards,setMenuCards]= useState(null);
 
     const {resId} = useParams();
-
-    useEffect(()=>{
-        fetchMenu();
-    },[]);
-
-    fetchMenu = async () =>{
-        const data = await fetch(MENU_API+resId);
-        const json = await data.json();
-        setResInfo(json?.data);
-        setMenuCards(json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR.cards);
-    }
-
+    const resInfo = useRestaurantMenu(resId);
+    const menuCards = resInfo?.cards[2].groupedCard?.cardGroupMap?.REGULAR.cards;
 
     if (resInfo=== null ) return <Shimmer />
 
@@ -55,16 +42,6 @@ const Menu = () =>{
             </div> */}
             <div className="menuList">
                 <ul>
-                    {/* {menuCards.map((menu) => (
-                        <>
-                        <h2>{menu.card.card.title}</h2>
-                        {console.log(menuCards.filter(filtered => filtered.card.card.title === "Recommended"))}
-                        <ul>{menuCards.filter(filtered => filtered.card.card.title == "Recommended").map((filtered) =>
-                            <ItemCard key={filtered.card.card.type} itemData={filtered.card.card.itemCards}/>
-                        )}
-                        </ul>
-                        </>
-                    ))} */}
                     {menuCards.filter(filtered => filtered.card.card.title === "Recommended").map((filtered) => (
                         <>
                         <h2>{filtered.card.card.title}</h2>

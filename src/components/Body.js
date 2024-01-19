@@ -4,6 +4,7 @@ import { useState } from "react";
 import {useEffect} from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () =>{
     // this is a normal JS variable which can be updated like topRatedrestaurant= ["ABC"];
@@ -32,6 +33,10 @@ const Body = () =>{
         setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
 
+    const onlineStatus = useOnlineStatus();
+
+    if(onlineStatus === false){return <h2>📶 You are Offline !! Please check your internet connection.</h2>}
+
     // fetch is a method provided by browser not javascript. But it returns a promise.
     // One way to handle the promise is by using async and await.
     
@@ -40,8 +45,7 @@ const Body = () =>{
     // if(topRatedRestaurantList.length===0){
     //     return <Shimmer />;
     // }
-    console.log()
-
+    
     // Ternary operator and conditional rendering and Shimmer effect
     // means if length is 0 return shimmer else return body
     return topRatedRestaurantList.length===0 ? <Shimmer /> : (

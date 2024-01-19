@@ -133,6 +133,11 @@ React Hooks:
         -   How to store value inside params. eg. const {resId} = useParams();
 
 Custom Hooks :
+    -   Custom hooks is nothing but a normal javascript function that we create with use keyword in the beginning , so react react me identify it as hook.
+    -   It is imported in the same way.
+        eg. import useRestaurantMenu from "../utils/useRestaurantMenu";
+    -   We create this hooks to seperate the logic of fetching and diplaying the data, leading in Single Responsibility Principle.
+    -   eg. const resInfo = useRestaurantMenu(resId);  -- useRestaurantMenu is a cutom hook here.
 
 
 Reconciliation Algorithm (React Fiber) : 
@@ -323,6 +328,22 @@ Class Based Component :
         }
 
         export default ClassComponent;
+
+Dynamic Bundling/ Code Splitting/ Chuncking/ Lazy Loading/ On demand loading/ Dynamic import :
+    -   This is very useful for optimization purpose for large scale application.
+    -   We divide the components into small- small bundles.
+    -   We don't import all the components at the start, we import it on demand when used.
+    -   This proces makes our js file small and takes less time to load.
+    -   We import it using lazy function provided by react and import inside it to pass the path of that component.
+        eg. const Grocery = lazy(()=> import("./components/Grocery"));
+            import React,{lazy,Suspense} from "react";
+    -   As react is very fast, it give error before the js bundle is loaded to the browser,
+        we use Suspense component provided by react to avoid the error.
+    -   We an provide fallback inside Sunspense , as what to show until our js file is loaded to the browser.
+        eg. {
+                path:"/grocery",
+                element:(<Suspense fallback={<h1>Loading...</h1>}><Grocery /></Suspense>)
+            }
 
 
 
