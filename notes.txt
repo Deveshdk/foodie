@@ -124,7 +124,13 @@ React Hooks:
                 <h2>{err.data}</h2>
                 </div>
                 );
-            }   
+            }  
+
+    useParams(); 
+        -   This hook is use to get or pass the id.
+        -   This can be used by importing it from react-router-dom.
+        -   eg. import { useParams } from "react-router-dom";
+        -   How to store value inside params. eg. const {resId} = useParams();
 
 Custom Hooks :
 

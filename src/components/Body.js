@@ -3,6 +3,7 @@ import restCardsList from "../utils/mockData";
 import { useState } from "react";
 import {useEffect} from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () =>{
     // this is a normal JS variable which can be updated like topRatedrestaurant= ["ABC"];
@@ -27,8 +28,8 @@ const Body = () =>{
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.495531649422116&lng=77.17867344617845&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json = await data.json();
         // Optional Chaining
-        setTopRatedRestaurantList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setTopRatedRestaurantList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
 
     // fetch is a method provided by browser not javascript. But it returns a promise.
@@ -39,7 +40,7 @@ const Body = () =>{
     // if(topRatedRestaurantList.length===0){
     //     return <Shimmer />;
     // }
-
+    console.log()
 
     // Ternary operator and conditional rendering and Shimmer effect
     // means if length is 0 return shimmer else return body
@@ -61,7 +62,10 @@ const Body = () =>{
                 }}>4+ Rated Restaurants</button>
             </div>
             <div className="res-container">
-                {filteredRestaurant.map(restaurant=>(<RestaurantCard key={restaurant.info.id} resData={restaurant}/>))};   {/**This is a config driven UI as the card is now dependent on data. */}
+                {filteredRestaurant.map(restaurant=>(
+                <Link key={restaurant.info.id} to={"restaurants/"+ restaurant.info.id}>
+                    <RestaurantCard  resData={restaurant}/>
+                </Link>))};   {/**This is a config driven UI as the card is now dependent on data. */}
             </div>
         </div>
     )
