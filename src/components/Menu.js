@@ -16,9 +16,9 @@ const Menu = () =>{
     const {name,cuisines,costForTwoMessage,areaName,sla,avgRatingString,totalRatingsString,feeDetails} = resInfo?.cards[0].card.card.info;
     const couponsList = resInfo?.cards[1].card.card.gridElements.infoWithStyle.offers;
     return (
-        <div className="menu-container">
-            <h2>{name}</h2>
-            <div className="restaurant-header">
+        <div className="menu-container w-2/3 bg-slate-50 aspect-square ">
+            <h2 className="text-4xl m-5 ">{name}</h2>
+            <div className="restaurant-header  flex justify-between px-4 m-4">
                 <div>
                     <p>{cuisines.join(',')}</p>
                     <p>{areaName}, {sla.lastMileTravelString}</p>
@@ -28,7 +28,7 @@ const Menu = () =>{
                 </div>
             </div>
             <p>🚴‍♂️ {feeDetails.message}</p>
-            <p>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p>---------------------------------------------------------------------------------------------------------------------------------</p>
             <h3>🕒 {sla.slaString}    💲  {costForTwoMessage}</h3>
             <div className="coupons">
                     {couponsList.map((coupon) =>(
