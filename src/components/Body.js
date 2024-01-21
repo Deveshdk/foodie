@@ -1,8 +1,9 @@
 import RestaurantCard ,{VegRestaurantCard} from "./RestaurantCard";
-import { useState,useEffect } from "react";
+import { useState,useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () =>{
     // this is a normal JS variable which can be updated like topRatedrestaurant= ["ABC"];
@@ -47,7 +48,7 @@ const Body = () =>{
     
     // Ternary operator and conditional rendering and Shimmer effect
     // means if length is 0 return shimmer else return body
-
+    const {loggedInUser,setUserName} = useContext(UserContext);
 
     return topRatedRestaurantList.length===0 ? <Shimmer /> : (
         <div className="body px-32 ">
@@ -66,6 +67,10 @@ const Body = () =>{
                         const filteredList=topRatedRestaurantList.filter(res => res.info.avgRating>=4);
                         setFilteredRestaurant(filteredList);
                     }}>4+ Rated Restaurants</button>
+                </div>
+                <div className="search m-4 p-4">
+                    <label>UserName : </label>
+                    <input className="border to-black" value={loggedInUser} onChange={(e)=>{setUserName(e.target.value)}}></input>
                 </div>
             </div>
             <div className="res-container flex flex-wrap-reverse">

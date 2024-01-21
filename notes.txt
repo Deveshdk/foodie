@@ -89,6 +89,33 @@ React Hooks:
     useContext(): 
         -   Allows functional components to consume data from React Context API.
             It provides access to the value of the nearest Context provider.
+        -   We create a context file and create a new context by createContext.
+            eg. 
+                const UserContext = createContext({
+                    loggedInUser : "Default User"
+                });
+        -   We use it by importing useContext from react.
+            eg. 
+                import UserContext from "../utils/UserContext";
+                const {loggedInUser} = useContext(UserContext); -- this is how we use it in functional component.
+        -   This solves the issue with props drilling.
+        -   Modify the context data using Context.Provider component.
+            eg.
+                <UserContext.Provider value={{loggedInUser:userName}}>
+                    <div className="app">
+                        <Header />
+                        <Outlet />
+                        <Footer />
+                    </div>
+                </UserContext.Provider>
+        
+        -   We can modify state variable of header using context from body by passing state variable inside Context.Provider component.
+            eg. Passing state variable <UserContext.Provider value={{loggedInUser:userName, setUserName}}>
+            eg. Receiving in body const {loggedInUser,setUserName} = useContext(UserContext);
+            eg. modifying value from input box
+                <input className="border to-black" value={loggedInUser} onChange={(e)=>{setUserName(e.target.value)}}></input>
+        
+
 
     useReducer(): 
         -   Alternative to useState for managing more complex state logic.
@@ -395,6 +422,16 @@ Lifting the State Up :
                     <RestaurantCategoryCard data={category?.card?.card}
                     showItems={index === showIndex ? true :false}
                     setShowIndex={()=>setShowIndex(index)}/>
+
+
+Prop Drilling :
+    -   It is way of passing props from parent to child to its child.
+        eg. A -> B -> C
+    _   This is not a effective way of passing props.
+        eg. If we have to pass prop from A to C.
+        It does not make sense to pass it from A -> B and B -> C if B does not have any use of that data.
+    
+
 
     
 
