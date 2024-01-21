@@ -1,7 +1,5 @@
-import RestaurantCard from "./RestaurantCard";
-import restCardsList from "../utils/mockData";
-import { useState } from "react";
-import {useEffect} from "react";
+import RestaurantCard ,{VegRestaurantCard} from "./RestaurantCard";
+import { useState,useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -20,6 +18,7 @@ const Body = () =>{
     const [filteredRestaurant,setFilteredRestaurant] = useState([]); // use this for UI
 
     const [searchRestaurant, setSearchRestaurant] = useState("");
+    const VegResCards = VegRestaurantCard(RestaurantCard);
 
     useEffect(() => {
         fetchData();
@@ -51,7 +50,7 @@ const Body = () =>{
 
 
     return topRatedRestaurantList.length===0 ? <Shimmer /> : (
-        <div className="body">
+        <div className="body px-32 ">
             <div className="filter flex items-center">
                 <div className="search m-4 p-4 ">
                     <input type="text" className="border border-solid shadow-md border-black rounded-lg" value={searchRestaurant} onChange={(e)=>{
@@ -72,7 +71,8 @@ const Body = () =>{
             <div className="res-container flex flex-wrap-reverse">
                 {filteredRestaurant.map(restaurant=>(
                 <Link key={restaurant.info.id} to={"restaurants/"+ restaurant.info.id}>
-                    <RestaurantCard  resData={restaurant}/>
+                    {restaurant.info.veg ? (<VegResCards resData={restaurant}/>) :
+                    (<RestaurantCard  resData={restaurant}/>)}
                 </Link>))};   {/**This is a config driven UI as the card is now dependent on data. */}
             </div>
         </div>

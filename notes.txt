@@ -346,6 +346,62 @@ Dynamic Bundling/ Code Splitting/ Chuncking/ Lazy Loading/ On demand loading/ Dy
             }
 
 
+Higher Order Components:
+    -   It is just a normal js function which takes a component as a argument and returns a enhanced or modified version of that component.
+    -   It does not modify the original component code.
+    -   It has to be named export/import.
+    -   eg. export const VegRestaurantCard = (RestaurantCard) =>{
+                return (props) =>{
+                    return(
+                        <div>
+                            <p className="absolute p-1 m-1 bg-black rounded-lg text-white">PureVeg</p>
+                            <RestaurantCard {...props}/>
+                        </div>
+                    )
+                }
+            }
+    -   here RestaurantCard is a component and in props we are passing the same data as original RestaurantCard component.
+
+
+Controlled & Uncontrolled Component :
+
+    UnControlled Component :
+        -   Component which manages its own state and does not depend on another component.
+        -   Here accordion header has its own state of show items with onclick event.
+            showItems is state variable which is changing on click of accordion header.
+            State variable is in the same component.
+            eg. const [showItems,setShowItems] = useState(false);
+            
+                {/** Accordion Header */}
+                <div className="flex justify-between cursor-pointer" onClick={handleClick}>
+                    <span className="font-bold text-lg">{data?.title} ({data.itemCards.length})</span>
+                    <span>⬇️</span>
+                </div>
+                {/** Accordion Body */}
+                { showItems && <ItemList items={data.itemCards}/>}
+
+    
+    Controlled Component :
+        -   Where the behaviour of one component is controlled by another component or by parent component.
+        -   This is also a exapmle of Lifting the state up.
+        
+Lifting the State Up :
+    -   Child component updates the state variable of parent component.
+    -   eg. accordion.
+    -   Here parent is send a state variable as a function to the child.
+    -   And this function will be called from the child on click and change the value of a state.
+
+                {category.map((category,index)=>(
+                    <RestaurantCategoryCard data={category?.card?.card}
+                    showItems={index === showIndex ? true :false}
+                    setShowIndex={()=>setShowIndex(index)}/>
+
+    
+
+
+
+
+
 
 
 

@@ -8,6 +8,8 @@ import Error from "./components/Error";
 import Menu from "./components/Menu";
 import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import ClassComponent from "./components/ClassComponent";
+import Footer from "./components/Footer";
+import Copyright from "./components/Copyright";
 
 const Grocery = lazy(()=> import("./components/Grocery"));
 
@@ -16,6 +18,7 @@ const AppLayout =()=>{
         <div className="app">
             <Header />
             <Outlet />
+            <Footer />
         </div>
     )
 };
@@ -48,6 +51,10 @@ const routes= createBrowserRouter([
             {
                 path:"/grocery",
                 element:(<Suspense fallback={<h1>Loading...</h1>}><Grocery /></Suspense>)
+            },
+            {
+                path:"/copyright",
+                element:<Copyright />
             }
         ],
         errorElement:<Error />

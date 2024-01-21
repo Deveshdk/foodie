@@ -15,4 +15,17 @@ const RestaurantCard =( props) =>{
     );
 };
 
+// Higher Order Component
+
+export const VegRestaurantCard = (RestaurantCard) =>{
+    return (props) =>{
+        return(
+            <div>
+                <p className="absolute p-1 m-1 bg-black rounded-lg text-white">PureVeg</p>
+                <RestaurantCard {...props}/>
+            </div>
+        )
+    }
+}
+
 export default RestaurantCard;
