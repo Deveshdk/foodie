@@ -148,7 +148,7 @@ React Hooks:
         -   Helps display a label for custom hooks in React DevTools.
     
     useRouteError():
-        -   It can be imported as named import from react-router-dom. eg. import {useRouteErro} from "react-router-dom";
+        -   It can be imported as named import from react-router-dom. eg. import {useRouteError} from "react-router-dom";
         -   It is developer friendly and can be used to show error in the UI.
             eg. const Error = () =>{
                 const err = useRouteError();
