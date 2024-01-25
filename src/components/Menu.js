@@ -42,7 +42,7 @@ const Menu = () =>{
             </div> */}
             <div>
                 {category.map((category,index)=>(
-                    <RestaurantCategoryCard data={category?.card?.card}
+                    <RestaurantCategoryCard key={category?.card?.card.title} data={category?.card?.card}
                     showItems={index === showIndex ? true :false}
                     setShowIndex={()=>setShowIndex(index)}/>
                 ))}

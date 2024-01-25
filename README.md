@@ -39,8 +39,6 @@
 
 # Custom Hooks
 
-# Redux
-
 # Promises
 
 # Lazy Loading
@@ -69,3 +67,11 @@
 # Higher Order Components
 
 # Tailwind CSS
+
+# Redux ToolKit
+    -   Install @reduxjs/toolkit and react-redux  -- Command  npm i @reduxjs/toolkit and npm i react-redux
+    -   Build our store
+    -   Connect our store to our app
+    -   Slice (cartSlice)
+    -   dispatch(action)
+    -   Selector

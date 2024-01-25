@@ -120,6 +120,13 @@ React Hooks:
     useReducer(): 
         -   Alternative to useState for managing more complex state logic.
             It uses a reducer function and returns the current state and a dispatch function.
+    
+    useSelector():
+        -   It comes from react-redux library.
+            eg. import {useSelector} from "react-redux";
+        -   This selector helps us to identify what portionof the store we want to read.
+            eg. const cartItems = useSelector((store)=> store.cart.items);
+
 
     useCallback():
         -   Memoizes functions to prevent unnecessary re-renders of components that rely on these functions.
@@ -430,7 +437,126 @@ Prop Drilling :
     _   This is not a effective way of passing props.
         eg. If we have to pass prop from A to C.
         It does not make sense to pass it from A -> B and B -> C if B does not have any use of that data.
+
+Redux :
+-   Redux is not manadatory.
+-   Redux is state management library where we store all our states data.
+-   Redux store can be very big and will be hard to manage, to achieve this we have slices inside redux tool kit.
+-   RTK says either you mutate the state or return a new state.
+    eg. return {items:[]} -- this is returning a new state or state.items.length=0; -- this is a mutated state.
+-   Redux Slice :
+    -   Slices are used to seperate the logical state. eg. Cart Slice, User slice , theme slice etc.
+
+-   We cannot directly modify slice of our redux store.
+    -   Way to modify slice in our redux store:
+    -   eg. Add Button Click ---> Dispatches an Action ---> Action will call a reducer fn --> Then reducer fn will modify our slice of our redux store.
+
+-   Way to read data from slice in our redux store :
+    -   We will use a selector and Selector will give us the data.
+    -   This using of selector phenomenon is called Subscribing to the store.
+    -   In orther way , our component is subscribed to our store means
+        our component is using selector to read the data from slice of our redux store.
+
+
+Redux ToolKit(RTK) Vs react-redux library :
+    redux toolkit contains all the api's or rtkQuery provided by redux.
+    Inorder to use those in our appliaction we use Provided which is provided by react-redux. 
+
+
+Redux ToolKit :
+    -   Create Store in Redux & Use it in App:
+            -   configureStore api provided by redux that is used to create store. eg. const appStore = configureStore({});
+            -   we provide our store at the root level. and we pass StoreName inside a store.
+                eg. import { Provider } from "react-redux";
+                    <Provider store={appStore}>
+                        <UserContext.Provider value={{loggedInUser:userName, setUserName}}>
+                            <div className="app">
+                                <Header />
+                                <Outlet />
+                                <Footer />
+                            </div>
+                        </UserContext.Provider>
+                    </Provider>
+
+    -   Create Slice inside our store :
+        -   createSlice api provided by redux to create a slice in store. eg. const cartSlice = createSlice({});
+        -   createSlice takes 4 things inside i.e. name of the car, initialState as items of array, action and a reducer fn.
+            eg. const cartSlice = createSlice({
+                    name: "cart",
+                    initialState: {
+                        items: [],
+                    },
+                    reducers :{
+                        addItem : (state,action) =>{
+                            state.items.push(action.payload);
+                        },
+                        removeItem : (state,action) =>{
+                            state.items.pop();
+                        },
+                        clearCart : (state,action) =>{
+                            state.items.length = 0;
+                        }
+                    },
+                });
+                export const {addItem,removeItem,clearCart} = cartSlice.actions;  this is how we export an action.
+                export default cartSlice.reducer;  // this is how we export a reducer.
+
+        -   Reducer function take 2 arguments i.e. state and action
+            eg. addItems :  (state,action) =>{
+                                state.items.push(action.payload);
+                            },
+        -   addItems is the name of the reducer function.
     
+    -   Add slices inside our App store :
+        -   We add slices as a reducer in our store.
+        -   eg. import cartReducer from "./cartSlice";
+                const appStore = configureStore({
+                    reducer : {
+                    cart : cartReducer,
+                    },
+                });
+
+    -   Read data from store :
+        -   Selector is used to read the data from store.
+        -   useSelector is a hook provided by react-redux.
+            eg. import {useSelector} from "raect-redux";
+                const cartItems = useSelector((store)=> store.cart.Items);  // reading the data from store
+    
+    -   Dispatch an action :
+        -   dispatch is a hook provided by reac-redux as useDispatch.
+            eg. import {useDispatch} from "reacct-redux";
+                const dispatch = useDispatch();
+        -   How to dispatch an action to call my reducer function
+            eg.  const handleAddItem = (item) =>{
+                    // dispatch an action
+                    dispatch(addItem(item.card?.info?.name));  // it is calling my reducer addItem reducer function
+                }
+
+Reducer :
+    -   App store will have one reducer and a bunch of small reducer for each slice. i.e we write reducer without s.
+    -   In our Slice, we have reducers which have multipler reducer function. i.e we write reducers with s.
+    -   In our slice we export only one reducer.
+
+Impure Function :
+    -   state.items.push(action.payload);
+
+Immer Library :
+    -   In older version of Redux, we cannot mutate the state, instead we create a new state, mutate it and then return it.
+        eg.  const newState = [...state];
+             newState.items.push(action.payload);
+             return newState;
+    -   Redux behind the scene uses immer library to create a new state.
+    -   In newer version in redux tool kit , we have to mutate the state . eg. state.items.push;
+    -   This library is used to finding the difference 
+        between original state and the mutated state and gives back the new state which is immutable.
+
+How to console log in Redux:
+    -   We can do console.log inside redux by using current.
+    -   import {current} from "@reduxjs/toolkit";
+    -   console.log(current(state));
+
+
+            
 
 
     
