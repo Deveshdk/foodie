@@ -591,9 +591,11 @@ Testing :
         -   1 is the decription and other is the callback function where we will call our function or anything.
         -   "it" and test is the same thing. "it" is just an alias for test.
         -   for grouping of test we use describe.
+        -   Add "watch-test":"jest --watch" in package.json in order to run your test again and again manually.
+        -   Command to start your test --- npm run watch-test 
 
         Unit Testing :
-        -   Testing in isolation. means testing seperate component.
+        -   Testing one component/one unit in isolation. means testing seperate seperate component.
         -   If you are using redux in your component, you have to provide the redux appStore using provider while rendering component.
             eg. 
             eg. describe("Contact Us page test cases",()=>{
@@ -651,6 +653,36 @@ Testing :
                     //Assertion
                     expect(button).toBeInTheDocument();
                 })
+        
+        Integration Testing :
+            -   Whenever we doing any fetch or updating state, we have wrap it inside act function.
+            -   act function comes from react-dom/test-utils
+            -   act return a promise , so we have to await it.
+            -   act is a function which take a callback function which is again a async fn and this async fn returns your render 
+                and this render will render your component.
+                eg. await act(async ()=> render(<Body />))
+            -   How to provide test id to input box or any html element : data-testid="searchInput"  -- i in id will be small and data- is manatory
+            -   If we dont have any id then we can always query by screnn.getByTestId("searchInput"); 
+
+
+        Helper Function :
+            -   These helper function is uselful when you want to do some clean after calling any test case.
+            
+            -   beforeAll(()=>{
+                    console.log("This will only be called once before calling all the test cases.")
+                });
+
+            -   beforeEach(()=>{
+                    console.log("This function will be called everytime before calling any test case.")
+                });
+
+            -   afterAll(()=>{
+                    console.log("This function will be called only once after calling all the test cases.")
+                });
+
+            -   afterEach(()=>{
+                    console.log("This function will be called everytime after calling any test case.")
+                });
 
 
     

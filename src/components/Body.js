@@ -54,7 +54,7 @@ const Body = () =>{
         <div className="body px-32 ">
             <div className="filter flex items-center">
                 <div className="search m-4 p-4 ">
-                    <input type="text" className="border border-solid shadow-md border-black rounded-lg" value={searchRestaurant} onChange={(e)=>{
+                    <input type="text" data-testid="searchInput" className="border border-solid shadow-md border-black rounded-lg" value={searchRestaurant} onChange={(e)=>{
                         setSearchRestaurant(e.target.value)
                     }}></input>
                     <button className="px-4 py-1 m-4  bg-green-100 rounded-lg" onClick={()=>{
@@ -63,7 +63,7 @@ const Body = () =>{
                     }}>Search</button>
                 </div>
                 <div className="search m-4 p-4">
-                    <button className="filter-btn px-4 py-2 bg-green-100 rounded-lg" onClick={()=>{
+                    <button data-testid="topRatedButton"className="filter-btn px-4 py-2 bg-green-100 rounded-lg" onClick={()=>{
                         const filteredList=topRatedRestaurantList.filter(res => res.info.avgRating>=4);
                         setFilteredRestaurant(filteredList);
                     }}>4+ Rated Restaurants</button>

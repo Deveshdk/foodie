@@ -8,11 +8,6 @@ const cartSlice = createSlice({
     },
     reducers :{
         addItem : (state,action) =>{
-
-           
-            
-            // In REdux Toolkit
-            // We have to mutate the state
             state.items.push(action.payload);
         },
         removeItem : (state,action) =>{

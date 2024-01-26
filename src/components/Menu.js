@@ -14,7 +14,7 @@ const Menu = () =>{
     const category = resInfo?.cards[2].groupedCard?.cardGroupMap?.REGULAR.cards.filter((category)=>category?.card?.card?.["@type"] ==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
     if (resInfo=== null ) return <Shimmer />
 
-    const {name,cuisines,costForTwoMessage,areaName,sla,avgRatingString,totalRatingsString,feeDetails} = resInfo?.cards[0].card.card.info;
+    const {name,cuisines,costForTwoMessage,areaName,sla,avgRatingString,totalRatingsString,feeDetails} = resInfo?.cards[0]?.card?.card?.info;
     const couponsList = resInfo?.cards[1].card.card.gridElements.infoWithStyle.offers;
     return (
         <div className="menu-container  text-center w-9/12 m-auto aspect-square ">

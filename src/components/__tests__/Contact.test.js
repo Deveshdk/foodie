@@ -3,6 +3,23 @@ import {render, screen} from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 describe("Contact Us page test cases",()=>{
+
+    beforeAll(()=>{
+        console.log("This will only be called once before calling all the test cases.")
+    });
+
+    beforeEach(()=>{
+        console.log("This function will be called everytime before calling any test case.")
+    });
+
+    afterAll(()=>{
+        console.log("This function will be called only once after calling all the test cases.")
+    });
+
+    afterEach(()=>{
+        console.log("This function will be called everytime after calling any test case.")
+    });
+
     test("Should render my Contact Us Component",()=>{
         render(<Contact />)
     
