@@ -18,6 +18,12 @@
   },
   "homepage": "https://github.com/Deveshdk/foodie#readme",
   "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@testing-library/react": "^14.1.2",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "parcel": "^2.10.3",
     "path-browserify": "^1.0.1",
     "postcss": "^8.4.33",
@@ -124,7 +130,7 @@
     "weak-lru-cache": "^1.2.2",
     "yallist": "^4.0.0"
   },
-  "browserlist": [
+  "browserslist": [
     "last 2 chrome version",
     "last 2 firefox version"
   ]

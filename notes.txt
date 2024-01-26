@@ -439,7 +439,7 @@ Prop Drilling :
         It does not make sense to pass it from A -> B and B -> C if B does not have any use of that data.
 
 Redux :
--   Redux is not manadatory.
+-   Redux is not manadatory to create a react application.
 -   Redux is state management library where we store all our states data.
 -   Redux store can be very big and will be hard to manage, to achieve this we have slices inside redux tool kit.
 -   RTK says either you mutate the state or return a new state.
@@ -554,6 +554,46 @@ How to console log in Redux:
     -   We can do console.log inside redux by using current.
     -   import {current} from "@reduxjs/toolkit";
     -   console.log(current(state));
+
+RTK Query : https://redux-toolkit.js.org/tutorials/rtk-query
+
+Testing :
+
+    Unit Testing : When we test each component one by one.
+    Integration Testing : It involves when we write test cases which has multiple components involved and so many actions are going on inside.
+        eg. search
+
+    React Testing Library is built on top of DOM Testing library. It is used to write our test cases inside react.
+    React Testing Library use Jest behing the scenes.
+    Jest is javascript testing framework.
+
+    Setting Up Testing in our app:
+        -   Command to install React Testing Library : npm i -D @testing-library/react
+        -   Command to install Jest : npm i -D jest
+        -   Command to install babel dependency : npm install --save-dev babel-jest @babel/core @babel/preset-env
+        -   Command to run test cases : npm test or npm run test
+        -   Command for jest configuration : npx jest --init
+        -   jsdom env :
+            -   jsdom is browser like enviroment where we run our tests. Its not a browser.
+            -   In order to run our test we need one server, since we dont have any server running , we use jsdom.
+        -   Command to install jsdom library : npm i -D jest-environment-jsdom
+
+    Folder Structure for test file :
+        -   Create a folder with __tests__ and any file inside if .js or .ts will be considered as test file.
+        -   Or we can use filename.test.ts or filename.test.js or filename.spec.js or filename.spec.ts
+        -   this __ before and after the name is called dunder.
+
+    Write test Case :
+        -   test is used for writing test case. It take two arguments.
+        -   1 is the decription and other is the callback function where we will call our function or anything.
+        -   And for assertion we ecpect(actualValue).toBe(expectedValue)
+            eg. test("Sum function should calculate the sum of two numbers",()=>{
+                    const result = sum(3,4);
+
+                    //Assertion
+                    expect(result).toBe(7);
+                });
+    
 
 
             
