@@ -91,3 +91,6 @@
         -   Jest configuration
         -   Choose jsdom env
         -   Install jsdom library if using jest28 or later
+        -   Install @babel/preset-react - to make JSX work in test cases  -- Command npm i -D @babel/preset-react
+        -   Include @babel/preset-react in babel config.js  like ['@babel/preset-react',{runtime:"automatic"}]  -- make it automatic
+        -   Install @testing-library/jest-dom -- command npm i -D @testing-library/jest-dom

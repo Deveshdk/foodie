@@ -577,6 +577,9 @@ Testing :
             -   jsdom is browser like enviroment where we run our tests. Its not a browser.
             -   In order to run our test we need one server, since we dont have any server running , we use jsdom.
         -   Command to install jsdom library : npm i -D jest-environment-jsdom
+        -   Install @babel/preset-react - to make JSX work in test cases  -- Command npm i -D @babel/preset-react
+        -   Include @babel/preset-react in babel config.js  like ['@babel/preset-react',{runtime:"automatic"}]  -- make it automatic
+        -   Install @testing-library/jest-dom -- command npm i -D @testing-library/jest-dom
 
     Folder Structure for test file :
         -   Create a folder with __tests__ and any file inside if .js or .ts will be considered as test file.
@@ -586,13 +589,70 @@ Testing :
     Write test Case :
         -   test is used for writing test case. It take two arguments.
         -   1 is the decription and other is the callback function where we will call our function or anything.
+        -   "it" and test is the same thing. "it" is just an alias for test.
+        -   for grouping of test we use describe.
+
+        Unit Testing :
+        -   Testing in isolation. means testing seperate component.
+        -   If you are using redux in your component, you have to provide the redux appStore using provider while rendering component.
+            eg. 
+            eg. describe("Contact Us page test cases",()=>{
+                    test("Should render my Contact Us Component",()=>{
+                        render(<Contact />)
+                    
+                        const heading = screen.getByRole("heading");
+                    
+                        //Assertion
+                        expect(heading).toBeInTheDocument();
+                    })
+                    
+                    test("Should load button inside Contact Component",()=>{
+                        render(<Contact />)
+                    
+                        const button = screen.getByRole("button");  // or const button = screen.getByText("Submit");
+                    
+                        //Assertion
+                        expect(button).toBeInTheDocument();
+                    })
+                    
+                    it("Should load input username inside Contact Component",()=>{
+                        render(<Contact />)
+                    
+                        const username = screen.getByPlaceholderText("username");  // or const message = screen.getByPlaceholderText("message");
+                    
+                        expect(username).toBeInTheDocument();
+                    })
+                    
+                    it("Should load 2 input boxes inside Contact Component",()=>{
+                        //Render
+                        render(<Contact />)
+                        // Querying
+                        const inputBoxes = screen.getAllByRole("textbox");
+                        //Assertion
+                        expect(inputBoxes.length).toBe(2); // or expect(inputBoxes.length).not.toBe(3); or many things are there.
+                    })
+                })
         -   And for assertion we ecpect(actualValue).toBe(expectedValue)
-            eg. test("Sum function should calculate the sum of two numbers",()=>{
-                    const result = sum(3,4);
+            eg. 
+                it("Should load 2 input boxes inside Contact Component",()=>{
+                    //Render
+                    render(<Contact />)
+                    // Querying
+                    const inputBoxes = screen.getAllByRole("textbox");
+                    //Assertion
+                    expect(inputBoxes.length).toBe(2); // or expect(inputBoxes.length).not.toBe(3); or many things are there.
+                })
+
+                test("Should load button inside Contact Component",()=>{
+                    render(<Contact />)
+
+                    const button = screen.getByRole("button");  // or const button = screen.getByText("Submit");
 
                     //Assertion
-                    expect(result).toBe(7);
-                });
+                    expect(button).toBeInTheDocument();
+                })
+
+
     
 
 
